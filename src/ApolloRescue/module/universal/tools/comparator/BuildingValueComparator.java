@@ -1,0 +1,24 @@
+package ApolloRescue.module.universal.tools.comparator;
+
+import rescuecore2.standard.entities.Building;
+import rescuecore2.worldmodel.EntityID;
+
+import java.util.Comparator;
+import java.util.Map;
+
+public class BuildingValueComparator implements Comparator<Building> {
+	Map<EntityID, Double> valueMap;
+
+	public BuildingValueComparator(Map<EntityID, Double> valueMap) {
+		this.valueMap = valueMap;
+	}
+
+	public int compare(Building b1, Building b2) {
+		double v1 = valueMap.get(b1.getID()), v2 = valueMap.get(b2.getID());
+		if (v1 > v2)
+			return 1;
+		if (v1 == v2)
+			return 0;
+		return -1;
+	}
+}
